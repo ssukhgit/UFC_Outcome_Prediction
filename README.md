@@ -1,10 +1,8 @@
 # UFC Outcome Prediction
 
-A comprehensive data pipeline and machine learning system for predicting UFC fight outcomes using historical fighter statistics and betting odds data.
-
 ## Project Overview
 
-This project aims to predict UFC fight outcomes by analyzing historical fighter data, fight statistics, and betting odds. The system combines data from multiple sources, processes it through a sophisticated pipeline, and uses machine learning to make predictions.
+This machine learning project aims to predict UFC fight outcomes by analyzing historical fighter data, fight statistics, and betting odds. The system combines data from multiple sources, processes it through a pipeline, and uses ML classification algorithms to make predictions.
 
 ## Table of Contents
 
