@@ -1,4 +1,4 @@
-# UFC Fight Prediction System
+# UFC Outcome Prediction
 
 A comprehensive data pipeline and machine learning system for predicting UFC fight outcomes using historical fighter statistics and betting odds data.
 
@@ -10,8 +10,7 @@ This project aims to predict UFC fight outcomes by analyzing historical fighter 
 
 - [Setup](#setup)
 - [Project Structure](#project-structure)
-- [Data Collection](#data-collection)
-- [Data Processing](#data-processing)
+- [Pipeline Steps](#pipeline-steps)
 - [Contributing](#contributing)
 
 ## Setup
@@ -26,7 +25,7 @@ This project aims to predict UFC fight outcomes by analyzing historical fighter 
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd MMA_aggregated_try2
+cd UFC_Outcome_Prediction
 ```
 
 2. Create and activate a virtual environment:
@@ -46,60 +45,44 @@ pip install -r requirements.txt
 ## Project Structure
 
 ```
-MMA_aggregated_try2/
-├── data/                      # Data directory
+UFC_Outcome_Prediction/
+├── data/                      # Data directory (gitignored)
 │   ├── raw/                  # Raw scraped data
-│   ├── processed/            # Cleaned and processed data
-│   └── aggregated/           # Feature engineered data
+│   │   ├── events/          # Event-related data
+│   │   ├── events_with_odds/# Event data with betting odds
+│   │   └── fighters/        # Fighter-related data
+│   ├── processed/           # Cleaned and processed data
+│   └── aggregated/          # Feature engineered data
 ├── src/                      # Source code
 │   ├── data/                # Data processing modules
-│   ├── models/              # Model training and prediction
+│   │   ├── data_cleaner.py    # Data cleaning utilities
+│   │   ├── events_scraper.py  # Event data collection
+│   │   ├── feature_engineer.py# Feature engineering
+│   │   ├── fighters_scraper.py# Fighter data collection
+│   │   └── odds_scraper.py    # Betting odds collection
 │   └── utils/               # Utility functions
+│       └── logging_config.py  # Logging configuration
 ├── notebooks/               # Jupyter notebooks
-├── logs/                    # Application logs
-└── models/                  # Saved model files
+│   ├── Inference.ipynb       # Basic inference notebook
+│   └── Inference_with_odds.ipynb # Inference with odds data
+└── step{1-5}_*.py          # Pipeline execution scripts
 ```
 
-## Data Collection
+## Pipeline Steps
 
-The system collects data from multiple sources:
+The data processing pipeline consists of several sequential steps, each implemented as a separate script:
 
-### Fighter Data
-- Basic fighter information
-- Fight history
-- Performance statistics
-- Physical attributes
+1. `step1_scrape_fighters.py`: Collects fighter data including basic information, fight history, and statistics
+2. `step2_scrape_events.py`: Gathers event details and fight cards
+3. `step3_scrape_odds.py`: Collects betting odds data from various sources
+4. `step4_clean.py`: Cleans and standardizes the collected data
+5. `step5_feature_engineering.py`: Generates features for the prediction model
 
-### Event Data
-- Event details
-- Fight cards
-- Results
+### Inference
 
-### Betting Odds
-- Historical betting odds
-- Odds movement data
-- Multiple bookmaker data
-
-## Data Processing
-
-The data processing pipeline consists of several stages:
-
-### 1. Data Cleaning
-- Handling missing values
-- Standardizing formats
-- Removing duplicates
-- Validating data consistency
-
-### 2. Feature Engineering
-- Creating fighter performance metrics
-- Computing historical statistics
-- Generating fight-specific features
-- Incorporating betting odds data
-
-### 3. Data Aggregation
-- Combining fighter statistics
-- Merging betting odds
-- Creating final feature set
+Two Jupyter notebooks are provided for making predictions:
+- `Inference.ipynb`: Basic prediction using fighter statistics
+- `Inference_with_odds.ipynb`: Enhanced prediction incorporating betting odds
 
 ## Contributing
 
