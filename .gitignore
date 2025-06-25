@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# Project specific
+logs/
+models/
+catboost_info/
+data/
+*.log
+*.joblib
+convert_pickles.py
+archive/
+
+# Data files
+*.csv
+*.pkl
+*.xlsx
+
+# Environment variables
+.env 
